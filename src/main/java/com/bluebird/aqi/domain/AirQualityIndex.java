@@ -1,6 +1,8 @@
 package com.bluebird.aqi.domain;
 
-public class AirQualityIndex {
+import java.io.Serializable;
+
+public class AirQualityIndex implements Serializable {
 	
 	private int pm25;
 	

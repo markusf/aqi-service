@@ -3,6 +3,7 @@ package com.bluebird.aqi.service;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Component;
 
 import com.bluebird.aqi.domain.AirQualityIndex;
@@ -13,6 +14,7 @@ public class AqiService {
 	@Autowired
 	private AqiClient aqiClient;
 	
+	@Cacheable(cacheNames = "aqi_city_cache", key = "#city")
 	public AirQualityIndex getByCity(String city) {
 		
 		String html = aqiClient.getByCity(city);
