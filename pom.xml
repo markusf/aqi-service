@@ -16,7 +16,7 @@
 		<spring.atmosphere.version>2.4.2</spring.atmosphere.version>
 	</properties>
 
-	<build>	
+	<build>
 		<finalName>${project.artifactId}</finalName>
 		<plugins>
 			<plugin>
@@ -28,8 +28,16 @@
 				<groupId>com.spotify</groupId>
 				<artifactId>docker-maven-plugin</artifactId>
 				<version>0.3.9</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>build</goal>
+						</goals>
+					</execution>
+				</executions>
 				<configuration>
-					<imageName>bluebird/${project.artifactId}</imageName>
+					<imageName>pred2k3/${project.artifactId}</imageName>
 					<dockerDirectory>src/main/docker</dockerDirectory>
 					<resources>
 						<resource>
@@ -38,6 +46,7 @@
 							<include>${project.build.finalName}.jar</include>
 						</resource>
 					</resources>
+					<serverId>docker-hub</serverId>
 				</configuration>
 			</plugin>
 		</plugins>
