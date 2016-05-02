@@ -7,6 +7,7 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Component;
 
 import com.bluebird.aqi.domain.AirQualityIndex;
+import com.bluebird.aqi.domain.City;
 
 @Component
 public class AqiService {
@@ -15,9 +16,9 @@ public class AqiService {
 	private AqiClient aqiClient;
 	
 	@Cacheable(cacheNames = "aqi_city_cache", key = "#city")
-	public AirQualityIndex getByCity(String city) {
+	public AirQualityIndex getByCity(City city) {
 		
-		String html = aqiClient.getByCity(city);
+		String html = aqiClient.getByCity(city.getName());
 				
 		int pm25 = getPm25FromHtml(html);
 		
