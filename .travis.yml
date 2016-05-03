@@ -13,7 +13,9 @@ after_success:
 
 script: 
   - mvn clean package
-  
+
+install: true
+
 cache:
   timeout: 1000
   directories:
